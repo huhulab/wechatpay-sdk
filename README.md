@@ -29,8 +29,7 @@ About pay, please read the [wechat pay document](https://pay.weixin.qq.com/wiki/
     client = WechatPay(
         appid = 'your_appid',
         mch_id='your_mch_id',
-        appSecret = 'your_appSecret',
-        partnerKey = 'your_partnerKey',
+        sign_key = 'your_sign_key',
         notify_url = 'your_notify_url',
         cert = '/path/your_cert.pem'
     )

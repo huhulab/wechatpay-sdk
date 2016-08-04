@@ -41,31 +41,3 @@ def smart_str(s, encoding='utf-8', strings_only=False, errors='strict'):
 
 def get_noncestr():
     return hashlib.md5(str(time.time())).hexdigest()
-
-
-def get_wechat_openid(appid, appsecret, code):
-    """
-    :param appid: wechat official accounts appid,
-                  it is not the pay accounts appid
-    :param appsecret: wechat official accounts appSecret
-    :param code: wechat official accouts authorization code
-    :return:
-    {
-        "access_token":"ACCESS_TOKEN",
-        "expires_in":7200,
-        "refresh_token":"REFRESH_TOKEN",
-        "openid":"OPENID",
-        "scope":"SCOPE"
-    }
-
-    document: https://open.weixin.qq.com/cgi-bin/showdocument
-                ?action=dir_list&t=resource/res_list&verify=1&id=open1419316505&token=&lang=zh_CN
-    """
-    Url = 'https://api.weixin.qq.com/sns/oauth2/access_token'
-    r = requests.get(url, params={
-        'appid': appid,
-        'secret': appsecret,
-        'code': code,
-        'grant_type': 'authorization_code'
-    })
-    return r.json()

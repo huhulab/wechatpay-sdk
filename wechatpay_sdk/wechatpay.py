@@ -23,9 +23,8 @@ class WechatPay(object):
         class Pay(WechatPay):
 
             appid = 'your_appid'
-            appSecret = 'your_appSecret'
             mch_id = 'your_mch_id'
-            partnerKey = 'your_partnerKey'
+            sign_key = 'your_sign_key'
             notify_url = 'your_notify_url'
 
         ret = Pay().app_pay(params)
@@ -40,12 +39,11 @@ class WechatPay(object):
         'MICRO': ['auth_code'],
     }
 
-    def __init__(self, appid='', appSecret='',
-                 mch_id='', partnerKey='', notify_url='', cert=''):
+    def __init__(self, appid='', mch_id='',
+                 sign_key='', notify_url='', cert=''):
         self.appid = appid
-        self.appSecret = appSecret,
         self.mch_id = mch_id,
-        self.partnerKey = partnerKey,
+        self.sign_key = sign_key,
         self.notify_url = notify_url,
         self.cert = cert
 
@@ -65,7 +63,7 @@ class WechatPay(object):
         build wechat pay signature
         """
         sign_temp = '%s&key=%s' % (self.create_sign_string(**kwargs),
-                                   self.partnerKey)
+                                   self.sign_key)
 
         return hashlib.md5(smart_str(sign_temp)).hexdigest().upper()
 
@@ -148,7 +146,7 @@ class WechatPay(object):
             'appid': self.appid,
             'mch_id': self.mch_id,
             'nonce_str': get_noncestr(),
-            'body': self.get_body(params.get('body')),
+            'body': self.get_body(params.get('body', u'Test Request')),
         })
 
         if trade_type != 'MICRO':
