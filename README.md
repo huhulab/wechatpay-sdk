@@ -5,25 +5,22 @@ WechatPay is a sdk for wechat pay, Before using this, you need to set up the con
 
 About pay, please read the [wechat pay document](https://pay.weixin.qq.com/wiki/doc/api/index.html)
 
-### how to install
+### How to install & uninstall
 
 ```
-    git clone git@github.com:fanhan/wechatpay.git
 
-    cd wechatpay
-    python setup.py install
-```
+    # Install
+    pip install git+https://github.com/huhulab/wechatpay-sdk.git@master
 
-or
+    # Uninstall
+    pip uninstall wechatpay-sdk
 
-```
-    pip install wechat_pay
 ```
 
 
 [How to get openid](https://pay.weixin.qq.com/wiki/doc/api/app.php?chapter=4_4)
 
-### how to use?
+### How to use?
 
 ``` python
 
