@@ -10,6 +10,8 @@ About pay, please read the [wechat pay document](https://pay.weixin.qq.com/wiki/
 ``` bash
 
     # Install
+    pip install git+https://github.com/huhulab/wechatpay-sdk.git@v0.1
+    # or install the latest code
     pip install git+https://github.com/huhulab/wechatpay-sdk.git@master
 
     # Uninstall

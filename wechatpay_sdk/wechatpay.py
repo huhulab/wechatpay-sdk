@@ -39,8 +39,7 @@ class WechatPay(object):
         'MICRO': ['auth_code'],
     }
 
-    def __init__(self, appid='', mch_id='',
-                 sign_key='', notify_url='', cert=''):
+    def __init__(self, appid='', mch_id='', sign_key='', notify_url='', cert=''):
         self.appid = appid
         self.mch_id = mch_id,
         self.sign_key = sign_key,
@@ -108,7 +107,8 @@ class WechatPay(object):
         if not isinstance(params, dict):
             raise Exception('params must be a dict')
 
-        params['sign'] = self.build_sign(**params)
+        sign = self.build_sign(**params)
+        params['sign'] = sign
 
         xml_str = self.to_xml(**params)
 
@@ -124,6 +124,7 @@ class WechatPay(object):
 
                 for child in ET.fromstring(smart_str(r.text)):
                     ret[child.tag] = child.text
+                ret['request_sign'] = sign
                 return ret
             except Exception as e:
                 error = e
