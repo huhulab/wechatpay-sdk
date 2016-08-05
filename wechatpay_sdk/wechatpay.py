@@ -107,8 +107,7 @@ class WechatPay(object):
         if not isinstance(params, dict):
             raise Exception('params must be a dict')
 
-        sign = self.build_sign(**params)
-        params['sign'] = sign
+        params['sign'] = self.build_sign(**params)
 
         xml_str = self.to_xml(**params)
 
@@ -124,8 +123,6 @@ class WechatPay(object):
 
                 for child in ET.fromstring(smart_str(r.text)):
                     ret[child.tag] = child.text
-                ret['request_sign'] = sign
-                ret['request_nonce_str'] = params.get('nonce_str')
                 return ret
             except Exception as e:
                 error = e
