@@ -41,9 +41,9 @@ class WechatPay(object):
 
     def __init__(self, appid='', mch_id='', sign_key='', notify_url='', cert=''):
         self.appid = appid
-        self.mch_id = mch_id,
-        self.sign_key = sign_key,
-        self.notify_url = notify_url,
+        self.mch_id = mch_id
+        self.sign_key = sign_key
+        self.notify_url = notify_url
         self.cert = cert
 
     def create_sign_string(self, **kwargs):
